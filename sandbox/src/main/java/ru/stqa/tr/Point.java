@@ -2,9 +2,7 @@ package ru.stqa.tr;
 
 import static java.lang.Math.sqrt;
 
-/**
- * Created by guena on 14.05.2017.
- */
+
 public class Point {
     public double x;
     public double y;
