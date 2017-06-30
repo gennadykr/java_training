@@ -14,7 +14,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.*;
 import static org.openqa.selenium.OutputType.*;
 
-public class GroupCreationTest {
+public class ContactCreationTest {
     FirefoxDriver wd;
     
     @BeforeMethod
@@ -32,21 +32,25 @@ public class GroupCreationTest {
     }
     
     @Test
-    public void testGroupCreation() {
-
-        wd.findElement(By.linkText("groups")).click();
-        wd.findElement(By.name("new")).click();
-        wd.findElement(By.name("group_name")).click();
-        wd.findElement(By.name("group_name")).clear();
-        wd.findElement(By.name("group_name")).sendKeys("test1");
-        wd.findElement(By.name("group_header")).click();
-        wd.findElement(By.name("group_header")).clear();
-        wd.findElement(By.name("group_header")).sendKeys("test2");
-        wd.findElement(By.name("group_footer")).click();
-        wd.findElement(By.name("group_footer")).clear();
-        wd.findElement(By.name("group_footer")).sendKeys("test3");
-        wd.findElement(By.name("submit")).click();
-        wd.findElement(By.linkText("group page")).click();
+    public void testContactCreation() {
+        wd.findElement(By.linkText("add new")).click();
+        wd.findElement(By.name("firstname")).click();
+        wd.findElement(By.name("firstname")).clear();
+        wd.findElement(By.name("firstname")).sendKeys("teste1");
+        wd.findElement(By.name("lastname")).click();
+        wd.findElement(By.name("lastname")).clear();
+        wd.findElement(By.name("lastname")).sendKeys("test2");
+        wd.findElement(By.name("address")).click();
+        wd.findElement(By.name("address")).clear();
+        wd.findElement(By.name("address")).sendKeys("test3");
+        wd.findElement(By.name("home")).click();
+        wd.findElement(By.name("home")).clear();
+        wd.findElement(By.name("home")).sendKeys("test4");
+        wd.findElement(By.name("email")).click();
+        wd.findElement(By.name("email")).clear();
+        wd.findElement(By.name("email")).sendKeys("test5");
+        wd.findElement(By.xpath("//div[@id='content']/form/input[21]")).click();
+        wd.findElement(By.id("logo")).click();
     }
     
     @AfterMethod
