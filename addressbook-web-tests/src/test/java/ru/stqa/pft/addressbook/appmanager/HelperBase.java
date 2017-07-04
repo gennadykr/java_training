@@ -3,6 +3,9 @@ package ru.stqa.pft.addressbook.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
+import java.util.List;
 
 public class HelperBase {
     protected WebDriver wd;
@@ -16,9 +19,14 @@ public class HelperBase {
     }
 
     protected void type(By locator, String text) {
-        click(locator);
-        wd.findElement(locator).clear();
-        wd.findElement(locator).sendKeys(text);
+        if (text != null) {
+            String existingText = wd.findElement(locator).getAttribute("value");
+            if (!text.equals(existingText)) {
+                click(locator);
+                wd.findElement(locator).clear();
+                wd.findElement(locator).sendKeys(text);
+            }
+        }
     }
 
     public boolean isAlertPresent() {
@@ -30,4 +38,9 @@ public class HelperBase {
         }
     }
 
+    protected boolean isElementPresent(By locator) {
+        List<WebElement> elements = wd.findElements(locator);
+        int size = elements.size();
+        return size > 0;
+    }
 }

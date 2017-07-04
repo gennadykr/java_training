@@ -6,7 +6,6 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.BrowserType;
 
-import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 
@@ -31,7 +30,12 @@ public class ApplicationManager {
         } else if (browser.equals(BrowserType.EDGE)) {
             wd = new EdgeDriver();
         }
-        wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+
+        // REQUIRED FOR EDGE (too fast!):
+        // wd.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+
+        //wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+
         wd.get("http://localhost/addressbook/");
         groupHelper = new GroupHelper(wd);
         contactHelper = new ContactHelper(wd);
