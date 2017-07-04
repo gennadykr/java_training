@@ -31,7 +31,7 @@ public class ContactHelper extends HelperBase {
         wd.switchTo().alert().accept();
     }
 
-    public   void selectContact() {
+    public void selectContact() {
         click(By.name("selected[]"));
     }
 
@@ -41,5 +41,21 @@ public class ContactHelper extends HelperBase {
 
     public void submitContactModification() {
         click(By.name("update"));
+    }
+
+    public void createContact(ContactData contact) {
+        initContactCreation();
+        fillContactForm(contact);
+        submitContactCreation();
+        returnToContactPage();
+    }
+
+    private void returnToContactPage() {
+        System.out.println("Return to Contacts page");
+        click(By.id("logo"));
+    }
+
+    public boolean isThereAContact() {
+        return isElementPresent(By.name("selected[]"));
     }
 }
