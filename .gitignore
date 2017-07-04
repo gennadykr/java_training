@@ -1,3 +1,6 @@
+# Intellij IDEA build directory
+out/
+
 .gradle
 build/
 
