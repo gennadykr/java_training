@@ -1,6 +1,7 @@
 package ru.stqa.pft.addressbook.model;
 
 public class GroupData {
+    private String id;
     private final String name;
     private final String header;
     private final String footer;
@@ -9,6 +10,17 @@ public class GroupData {
         this.name = name;
         this.header = header;
         this.footer = footer;
+    }
+
+    public GroupData(String id, String name, String header, String footer) {
+        this.id = id;
+        this.name = name;
+        this.header = header;
+        this.footer = footer;
+    }
+
+    public String getId() {
+        return id;
     }
 
     public String getName() {
@@ -26,7 +38,8 @@ public class GroupData {
     @Override
     public String toString() {
         return "GroupData{" +
-                "name='" + name + '\'' +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
                 '}';
     }
 

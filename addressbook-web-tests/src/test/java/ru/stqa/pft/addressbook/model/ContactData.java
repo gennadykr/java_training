@@ -1,6 +1,7 @@
 package ru.stqa.pft.addressbook.model;
 
 public class ContactData {
+    private String id;
     private final String firstname;
     private final String lastname;
     private final String address;
@@ -13,6 +14,19 @@ public class ContactData {
         this.address = address;
         this.home = home;
         this.email = email;
+    }
+
+    public ContactData(String id, String firstname, String lastname, String address, String home, String email) {
+        this.id = id;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.address = address;
+        this.home = home;
+        this.email = email;
+    }
+
+    public String getId() {
+        return id;
     }
 
     public String getFirstname() {
@@ -38,7 +52,8 @@ public class ContactData {
     @Override
     public String toString() {
         return "ContactData{" +
-                "firstname='" + firstname + '\'' +
+                "id='" + id + '\'' +
+                ", firstname='" + firstname + '\'' +
                 ", lastname='" + lastname + '\'' +
                 '}';
     }

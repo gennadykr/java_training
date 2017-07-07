@@ -14,6 +14,7 @@ public class ContactDelitionTest extends TestBase {
             app.getContactHelper().createContact(new ContactData("test7", null, null, null, null));
         }
         List<ContactData> before = app.getContactHelper().getContactList();
+        System.out.println(before.get(0));
         app.getContactHelper().selectContact(0);
         app.getContactHelper().deleteSelectedContacts();
         app.getNavigationHelper().gotoContactPage();
