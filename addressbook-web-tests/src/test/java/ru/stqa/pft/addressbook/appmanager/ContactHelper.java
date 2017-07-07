@@ -31,12 +31,12 @@ public class ContactHelper extends HelperBase {
         wd.switchTo().alert().accept();
     }
 
-    public void selectContact() {
-        click(By.name("selected[]"));
+    public void selectContact(int index) {
+        wd.findElements(By.name("selected[]")).get(index).click();
     }
 
-    public void initContactModification() {
-        click(By.xpath("//*[@title='Edit']"));
+    public void initContactModification(int index) {
+        wd.findElements(By.xpath("//*[@title='Edit']")).get(index).click();
     }
 
     public void submitContactModification() {

@@ -11,7 +11,7 @@ public class ContactDelitionTest extends TestBase {
         if (!app.getContactHelper().isThereAContact()){
             app.getContactHelper().createContact(new ContactData("test7", null, null, null, null));
         }
-        app.getContactHelper().selectContact();
+        app.getContactHelper().selectContact(0);
         app.getContactHelper().deleteSelectedContacts();
         app.getNavigationHelper().gotoContactPage();
     }
