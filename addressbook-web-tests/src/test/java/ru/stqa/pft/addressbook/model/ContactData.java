@@ -9,7 +9,7 @@ public class ContactData {
     private final String email;
 
     public ContactData(String firstname, String lastname, String address, String home, String email) {
-        this.id = 0;
+        this.id = Integer.MAX_VALUE;
         this.firstname = firstname;
         this.lastname = lastname;
         this.address = address;
