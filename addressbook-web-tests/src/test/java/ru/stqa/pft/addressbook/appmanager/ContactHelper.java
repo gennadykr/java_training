@@ -88,7 +88,7 @@ public class ContactHelper extends HelperBase {
             String address = tds.get(3).getText();
             String all_emails = tds.get(4).getText();
             String all_phones = tds.get(5).getText();
-            ContactData contact = new ContactData(id, firstName, lastName, null, null, null);
+            ContactData contact = new ContactData().withId(id).withFirstname(firstName).withLastname(lastName);
             contacts.add(contact);
         }
         return contacts;

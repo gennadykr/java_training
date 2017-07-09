@@ -12,7 +12,7 @@ public class ContactDelitionTest extends TestBase {
     public void ensurePreconditions(){
         app.goTo().contactPage();
         if (app.contact().list().size() == 0){
-            app.contact().create(new ContactData("test7", null, null, null, null));
+            app.contact().create(new ContactData().withFirstname("test7"));
         }
     }
 
