@@ -14,6 +14,7 @@ public class GroupHelper extends HelperBase {
         super(wd);
     }
 
+    //ToDo use from Navigateion! wd -> this?
     public void returnToGroupPage() {
         System.out.println("Return to the Groups page");
         click(By.linkText("group page"));
@@ -49,14 +50,14 @@ public class GroupHelper extends HelperBase {
         click(By.name("update"));
     }
 
-    public void createGroup(GroupData group) {
+    public void create(GroupData group) {
         initGroupCreation();
         fillGroupForm(group);
         submitGroupCreation();
         returnToGroupPage();
     }
 
-    public void modifyGroup(int index, GroupData group) {
+    public void modify(int index, GroupData group) {
         selectGroup(index);
         initGroupModification();
         fillGroupForm(group);
@@ -64,11 +65,17 @@ public class GroupHelper extends HelperBase {
         returnToGroupPage();
     }
 
+    public void delete(int index) {
+        selectGroup(index);
+        deleteSelectedGrouops();
+        returnToGroupPage();
+    }
+
     public boolean isThereAGroup() {
         return isElementPresent(By.name("selected[]"));
     }
 
-    public List<GroupData> getGroupList() {
+    public List<GroupData> list() {
         List<GroupData> groups = new ArrayList<GroupData>();
         List<WebElement> elements = wd.findElements(By.cssSelector("span.group"));
         for (WebElement element: elements) {

@@ -11,19 +11,19 @@ public class ContactModificationTest extends TestBase {
 
     @BeforeMethod
     public void ensurePreconditions(){
-        app.getNavigationHelper().gotoContactPage();
-        if (!app.getContactHelper().isThereAContact()){
-            app.getContactHelper().createContact(new ContactData("test7", null, null, null, null));
+        app.goTo().contactPage();
+        if (app.contact().list().size() == 0){
+            app.contact().create(new ContactData("test7", null, null, null, null));
         }
     }
 
     @Test
     public void testContactModification(){
         int index = 0;
-        List<ContactData> before = app.getContactHelper().getContactList();
+        List<ContactData> before = app.contact().list();
         ContactData contact = new ContactData(before.get(index).getId(),"teste1", "test2", "test3", "test4", null);
-        app.getContactHelper().modifyContact(index, contact);
-        List<ContactData> after = app.getContactHelper().getContactList();
+        app.contact().modify(index, contact);
+        List<ContactData> after = app.contact().list();
 
         Comparator<? super ContactData> byId = Comparator.comparingInt(ContactData::getId);
         before.sort(byId);
