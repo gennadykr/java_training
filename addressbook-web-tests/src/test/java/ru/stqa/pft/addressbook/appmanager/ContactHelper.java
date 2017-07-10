@@ -26,6 +26,19 @@ public class ContactHelper extends HelperBase {
         type(By.name("email"),contactData.getEmail());
     }
 
+    public ContactData infoFromEditForm(ContactData contact) {
+        initContactModification(contact);
+        ContactData info = new ContactData();
+        info.withId(contact.getId()).
+            withFirstname(readTextFromEditField(By.name("firstname"))).
+            withLastname(readTextFromEditField(By.name("lastname"))).
+            withAddress(readTextFromEditField(By.name("address"))).
+            withHome(readTextFromEditField(By.name("home"))).
+            withEmail(readTextFromEditField(By.name("email")));
+        returnToContactPage();
+        return info;
+    }
+
     public void initContactCreation() {
         click(By.linkText("add new"));
     }
@@ -98,5 +111,4 @@ public class ContactHelper extends HelperBase {
         }
         return new Contacts(contactCache);
     }
-
 }

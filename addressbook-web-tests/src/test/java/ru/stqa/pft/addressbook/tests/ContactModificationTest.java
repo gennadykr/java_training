@@ -20,7 +20,6 @@ public class ContactModificationTest extends TestBase {
 
     @Test
     public void testContactModification(){
-        int index = 0;
         Contacts before = app.contact().all();
         ContactData modifiedContact = before.iterator().next();
         ContactData contact =

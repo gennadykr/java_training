@@ -20,13 +20,17 @@ public class HelperBase {
 
     protected void type(By locator, String text) {
         if (text != null) {
-            String existingText = wd.findElement(locator).getAttribute("value");
+            String existingText = readTextFromEditField(locator);
             if (!text.equals(existingText)) {
                 click(locator);
                 wd.findElement(locator).clear();
                 wd.findElement(locator).sendKeys(text);
             }
         }
+    }
+
+    protected String readTextFromEditField(By locator) {
+        return wd.findElement(locator).getAttribute("value");
     }
 
     public boolean isAlertPresent() {
