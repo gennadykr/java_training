@@ -22,5 +22,15 @@ public class ContactFieldsTest extends TestBase{
         ContactData contact = app.contact().all().iterator().next();
         ContactData contactInfoFromEditForm = app.contact().infoFromEditForm(contact);
         assertThat(contact, equalTo(contactInfoFromEditForm));
+
+        assertThat(contact.getAddress(), equalTo(contactInfoFromEditForm.getAddress()));
+
+        String combinedEmails =  contactInfoFromEditForm.getEmail() + "\n" +
+                contactInfoFromEditForm.getEmail2() + "\n" + contactInfoFromEditForm.getEmail3();
+        assertThat(contact.getAllEmails(), equalTo(combinedEmails));
+
+        String combinedPhones = contactInfoFromEditForm.getHome() + "\n" +
+                contactInfoFromEditForm.getMobile() + "\n" + contactInfoFromEditForm.getWork();
+        assertThat(contact.getAllPhones(), equalTo(combinedPhones));
     }
 }

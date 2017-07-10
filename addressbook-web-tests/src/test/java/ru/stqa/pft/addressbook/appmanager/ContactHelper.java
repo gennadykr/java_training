@@ -30,11 +30,15 @@ public class ContactHelper extends HelperBase {
         initContactModification(contact);
         ContactData info = new ContactData();
         info.withId(contact.getId()).
-            withFirstname(readTextFromEditField(By.name("firstname"))).
-            withLastname(readTextFromEditField(By.name("lastname"))).
-            withAddress(readTextFromEditField(By.name("address"))).
-            withHome(readTextFromEditField(By.name("home"))).
-            withEmail(readTextFromEditField(By.name("email")));
+                withFirstname(readTextFromEditField(By.name("firstname"))).
+                withLastname(readTextFromEditField(By.name("lastname"))).
+                withAddress(readTextFromEditField(By.name("address"))).
+                withHome(readTextFromEditField(By.name("home"))).
+                withMobile(readTextFromEditField(By.name("mobile"))).
+                withWork(readTextFromEditField(By.name("work"))).
+                withEmail(readTextFromEditField(By.name("email"))).
+                withEmail2(readTextFromEditField(By.name("email2"))).
+                withEmail3(readTextFromEditField(By.name("email3")));
         returnToContactPage();
         return info;
     }
@@ -104,9 +108,10 @@ public class ContactHelper extends HelperBase {
             String lastName = tds.get(1).getText();
             String firstName = tds.get(2).getText();
             String address = tds.get(3).getText();
-            String all_emails = tds.get(4).getText();
-            String all_phones = tds.get(5).getText();
-            ContactData contact = new ContactData().withId(id).withFirstname(firstName).withLastname(lastName);
+            String allEmails = tds.get(4).getText();
+            String allPhones = tds.get(5).getText();
+            ContactData contact = new ContactData().withId(id).withFirstname(firstName).withLastname(lastName).
+                    withAddress(address).withAllEmails(allEmails).withAllPhones(allPhones);
             contactCache.add(contact);
         }
         return new Contacts(contactCache);
