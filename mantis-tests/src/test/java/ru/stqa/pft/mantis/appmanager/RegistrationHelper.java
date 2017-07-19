@@ -14,4 +14,12 @@ public class RegistrationHelper extends HelperBase {
         type(By.cssSelector("#email-field"), email);
         click(By.cssSelector("[value='Signup']"));
     }
+
+    public void finish(String confermationLink, String password) {
+        wd.get(confermationLink);
+        type(By.name("realname"),"Real Name");
+        type(By.name("password"),password);
+        type(By.name("password_confirm"),password);
+        click(By.cssSelector(".submit-button button"));
+    }
 }
