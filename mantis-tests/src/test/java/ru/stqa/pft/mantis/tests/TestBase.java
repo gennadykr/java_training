@@ -1,14 +1,18 @@
 package ru.stqa.pft.mantis.tests;
 
 import org.openqa.selenium.remote.BrowserType;
+import org.testng.SkipException;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import ru.lanwen.verbalregex.VerbalExpression;
 import ru.stqa.pft.mantis.appmanager.ApplicationManager;
 import ru.stqa.pft.mantis.model.MailMessage;
 
+import javax.xml.rpc.ServiceException;
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.rmi.RemoteException;
 import java.util.List;
 
 
@@ -38,5 +42,18 @@ public class TestBase {
         VerbalExpression regex = VerbalExpression.regex().find("http://").nonSpace().oneOrMore().build();
         System.out.println(regex);
         return regex.getText(mailMessage.text);
+    }
+
+    public void skipIfNotFixed(int issueId) throws RemoteException, ServiceException, MalformedURLException {
+        if (isIssueOpen(issueId)) {
+            throw new SkipException("Ignored because of issue " + issueId);
+        }
+    }
+
+    private boolean isIssueOpen(int issueId) throws RemoteException, ServiceException, MalformedURLException {
+        String issueState = app.soap().getIssueStatus(issueId);
+        System.out.println(issueState);
+        return issueState.equals("new") || issueState.equals("acknowledged")
+                || issueState.equals("confirmed") || issueState.equals("assigned");
     }
 }
