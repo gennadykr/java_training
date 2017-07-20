@@ -18,9 +18,11 @@ public class ApplicationManager {
 
     private String browser;
     private RegistrationHelper registrationHelper;
+    private UsersHelper usersHelper;
     private FtpHelper ftp;
     private MailHelper mailHelper;
     private JamesHelper jamesHelper;
+    private DbHelper dbHelper;
 
     public ApplicationManager(String browser) {
         this.browser = browser;
@@ -51,6 +53,13 @@ public class ApplicationManager {
             registrationHelper = new RegistrationHelper(this);
         }
         return registrationHelper;
+    }
+
+    public UsersHelper users() {
+        if (usersHelper == null) {
+            usersHelper = new UsersHelper(this);
+        }
+        return usersHelper;
     }
 
     public FtpHelper ftp() {
@@ -91,5 +100,12 @@ public class ApplicationManager {
             jamesHelper = new JamesHelper(this);
         }
         return jamesHelper;
+    }
+
+    public DbHelper db() {
+        if (dbHelper == null) {
+            dbHelper = new DbHelper();
+        }
+        return dbHelper;
     }
 }

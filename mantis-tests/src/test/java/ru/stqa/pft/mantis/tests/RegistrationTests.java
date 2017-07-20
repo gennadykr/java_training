@@ -35,13 +35,6 @@ public class RegistrationTests extends TestBase {
         assertTrue(app.newSession().login(user,password));
     }
 
-    private String findConfermationLink(List<MailMessage> mailMessages, String email) {
-        MailMessage mailMessage = mailMessages.stream().filter((m) -> m.to.equals(email)).findFirst().get();
-        VerbalExpression regex = VerbalExpression.regex().find("http://").nonSpace().oneOrMore().build();
-        System.out.println(regex);
-        return regex.getText(mailMessage.text);
-    }
-
     //@AfterMethod(alwaysRun = true)
     public void stopMailServer(){
         app.mail().stop();
